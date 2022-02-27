@@ -11,11 +11,28 @@ type
     HoraLabel: TLabel;
     ExecTimer: TTimer;
     FecharLabel: TLabel;
+    BatteryLabel: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure ExecTimerTimer(Sender: TObject);
     procedure FecharLabelClick(Sender: TObject);
   private
     { Private declarations }
+
+    /// <summary>Ultimo horario lido de Now</summary>
+    FAgora: TDateTime;
+
+    /// <summary>Contagem de execucoes do ExecTimer</summary>
+    FExecVez: integer;
+
+    /// <summary>Preenche a variavel FAgora com Now</summary>
+    procedure LeiaHoraAtual;
+
+    /// <summary>coloca hora atual no HoraLabel</summary>
+    procedure ExibaHora;
+
+    /// <summary>coloca percentual da bateria no BatteryLabel</summary>
+    procedure ExibaBattery;
+
   public
     { Public declarations }
   end;
@@ -27,21 +44,46 @@ implementation
 
 {$R *.dfm}
 
+uses Sis.Battery, Sis.Versao;
+
 procedure TBucharestDTF.ExecTimerTimer(Sender: TObject);
-var
-  dtAgora: TDateTime;
 begin
-  dtAgora := Now;
-  HoraLabel.Caption := FormatDateTime('hh:nn', dtAgora);
+  if (FExecVez div 60)=0 then
+  begin
+    LeiaHoraAtual;
+    ExibaHora;
+    ExibaBattery;
+  end;
+
+  inc(FExecVez);
+end;
+
+procedure TBucharestDTF.ExibaBattery;
+begin
+  BatteryLabel.Caption := 'Bat: ' + GetBatteryPerc.ToString + '%';
+end;
+
+procedure TBucharestDTF.ExibaHora;
+begin
+  HoraLabel.Caption := FormatDateTime('hh:nn', FAgora);
 end;
 
 procedure TBucharestDTF.FormCreate(Sender: TObject);
 begin
-  Height := 32;
+  FExecVez := 0;
+
+  Height := 56;
   Width := 90;
 
   Top := 20;
   Left := Screen.Width-Width;
+
+//  showmessage(getPowerStatus);
+end;
+
+procedure TBucharestDTF.LeiaHoraAtual;
+begin
+  FAgora := Now;
 end;
 
 procedure TBucharestDTF.FecharLabelClick(Sender: TObject);
