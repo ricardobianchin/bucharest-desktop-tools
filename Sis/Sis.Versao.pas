@@ -3,13 +3,10 @@ unit Sis.Versao;
 interface
 
 const
-versao_extenso=
-'0.1'
-;
+versao_extenso='0.2';
 
-versao_dth=
-'26/02/22 21:44'
-;
-impementation
+versao_dth='26/02/22 22:59';
+
+implementation
 
 end.

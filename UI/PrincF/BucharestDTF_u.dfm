@@ -3,7 +3,7 @@ object BucharestDTF: TBucharestDTF
   Top = 0
   BorderStyle = bsNone
   Caption = 'BucharestDTF'
-  ClientHeight = 79
+  ClientHeight = 82
   ClientWidth = 151
   Color = 16744448
   Font.Charset = DEFAULT_CHARSET
@@ -15,7 +15,7 @@ object BucharestDTF: TBucharestDTF
   OnCreate = FormCreate
   DesignSize = (
     151
-    79)
+    82)
   PixelsPerInch = 96
   TextHeight = 13
   object HoraLabel: TLabel
@@ -36,9 +36,16 @@ object BucharestDTF: TBucharestDTF
     OnClick = FecharLabelClick
     ExplicitLeft = 175
   end
+  object BatteryLabel: TLabel
+    Left = 7
+    Top = 21
+    Width = 43
+    Height = 13
+    Caption = 'Bat: 15%'
+  end
   object ExecTimer: TTimer
     OnTimer = ExecTimerTimer
-    Left = 64
-    Top = 24
+    Left = 96
+    Top = 32
   end
 end
