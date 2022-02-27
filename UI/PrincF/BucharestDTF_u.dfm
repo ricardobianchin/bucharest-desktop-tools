@@ -11,6 +11,7 @@ object BucharestDTF: TBucharestDTF
   Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   OnCreate = FormCreate
   DesignSize = (
